@@ -57,42 +57,6 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<!-- Make UberJar -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<minimizeJar>true</minimizeJar>
-							<createDependencyReducedPom>true</createDependencyReducedPom>
-							<dependencyReducedPomLocation>${java.io.tmpdir}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
-							<relocations>
-								<relocation>
-									<pattern>org.javastack.packer</pattern>
-									<shadedPattern>hidden.org.javastack.packer</shadedPattern>
-								</relocation>
-							</relocations>
-							<filters>
-								<filter>
-									<artifact>org.javastack:*</artifact>
-									<excludes>
-										<exclude>**/pom.properties</exclude>
-										<exclude>**/*.poperties</exclude>
-										<exclude>**/*.xml</exclude>
-										<exclude>**/sandbox/*</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- Package Classes to JAR to upload to repo -->
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
